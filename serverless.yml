@@ -24,6 +24,7 @@ provider:
   #  SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR}
   environment:
     tableName: notes
+    stripeSecretey: ${env:STRIPE_SECRET_KEY}
 
   iamRoleStatements:
     - Effect: Allow
@@ -38,6 +39,14 @@ provider:
       Resource: "arn:aws:dynamodb:us-east-2:*:*"  
 
 functions:
+  billing:
+    handler: billing.main
+    events:
+      - http:
+          path: billing
+          method: post
+          cors: true
+          authorizer: aws_iam
   delete:
     handler: delete.main
     events:
