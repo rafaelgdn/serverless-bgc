@@ -18,11 +18,11 @@ export default function Routes() {
       <Route exact path="/signup">
         <Signup />
       </Route>
-      <Route>
-        <NotFound />
+      <Route exact path="/notes/new">
+        <NewNote />
       </Route>
       <Route>
-        <NewNote />
+        <NotFound />
       </Route>
     </Switch>
   );
